@@ -1,15 +1,23 @@
-/**
- * Welcome to Cloudflare Workers! This is your first worker.
- *
- * - Run `npm run dev` in your terminal to start a development server
- * - Open a browser tab at http://localhost:8787/ to see your worker in action
- * - Run `npm run deploy` to publish your worker
- *
- * Learn more at https://developers.cloudflare.com/workers/
- */
+import { Hono } from 'hono';
+import { jwtMiddleware } from './lib/jwtMiddleware';
+import { getStationDetail } from './lib/indianRailClient';
 
-export default {
-	async fetch(request, env, ctx) {
-		return new Response('Hello World!');
-	},
-};
+const app = new Hono();
+
+app.get('/health', (c) => {
+	return c.json({ status: 'ok' });
+});
+
+app.get('/railway-station', jwtMiddleware, async (c) => {
+	const stationCode = c.req.query('station_code');
+
+	if (!stationCode) {
+		return c.json({ error: 'station_code is required' }, 400);
+	}
+
+	const stationDetail = await getStationDetail(c.env, stationCode);
+
+	return c.json({ status: 'ok', station_detail: stationDetail });
+});
+
+export default app;
