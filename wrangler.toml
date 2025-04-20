@@ -38,3 +38,8 @@ preview_id = "b95774667a97457eb28d63fd707e08ec"
 # [[r2_buckets]]
 # binding = "MY_BUCKET"
 # bucket_name = "my-bucket"
+
+[[d1_databases]]
+binding = "DB_HERMES"
+database_name = "hermes-dev"
+database_id = "374081b9-076b-440b-9a9a-32d30e3dcdd8"

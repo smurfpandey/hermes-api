@@ -11,7 +11,7 @@ async function getKey(header) {
 }
 
 export const jwtMiddleware = async (c, next) => {
-	const authHeader = c.req.headers.get('Authorization');
+	const authHeader = c.req.header('Authorization');
 	if (!authHeader) {
 		return c.json({ error: 'Authorization header is missing' }, 401);
 	}

@@ -9,12 +9,15 @@
     "test": "vitest"
   },
   "devDependencies": {
-    "@cloudflare/vitest-pool-workers": "^0.5.2",
-    "vitest": "2.0.5",
-    "wrangler": "^3.60.3"
+    "@cloudflare/vitest-pool-workers": "^0.5.35",
+    "prisma": "^6.0.1",
+    "vitest": "2.1.8",
+    "wrangler": "^3.94.0"
   },
   "dependencies": {
-    "hono": "^4.6.8",
+    "@prisma/adapter-d1": "^6.0.1",
+    "@prisma/client": "^6.0.1",
+    "hono": "^4.6.13",
     "jose": "^5.9.6"
   }
 }

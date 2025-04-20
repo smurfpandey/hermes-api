@@ -8,6 +8,10 @@ app.get('/health', (c) => {
 	return c.json({ status: 'ok' });
 });
 
+app.get('/user', (c) => {
+	return c.json({ user: c.req.user });
+});
+
 app.get('/railway-station', jwtMiddleware, async (c) => {
 	const stationCode = c.req.query('station_code');
 
